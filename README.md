@@ -38,13 +38,13 @@
     - Luiz Felipe Antunes Oliveira
     - Vinícius Kruchelski Gugelmin
 - Projetos:
-    - [TODO project name](TODO project link)
-        - [Dataset](TODO dataset link)
-        - [Dicionário de Dados](TODO dictionary link)
+    - [Valorant Overview](https://github.com/viniciusgugelmin/data-science-4/tree/master/projects/valorant_overview)
+        - [Dataset](https://github.com/viniciusgugelmin/data-science-4/tree/master/projects/valorant_overview/data/dataset.csv)
+        - [Dicionário de Dados](https://github.com/viniciusgugelmin/data-science-4/tree/master/projects/valorant_overview/data/data_dictionary.csv)
         - [Dataset limpo](TODO cleaned dataset link)
         - [Notebook de Limpeza](TODO cleaning notebook link)
         - [Notebook de Análise](TODO analysis notebook link)
-        - [Referências](TODO references link)
+        - [Referências](https://github.com/viniciusgugelmin/data-science-4/blob/master/projects/valorant_overview/README.md)
 
 <a name="about-the-project"></a>
 

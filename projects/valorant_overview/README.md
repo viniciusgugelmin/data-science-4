@@ -4,7 +4,7 @@
   </a>
 
   <h3 align="center">
-    TODO Project Name
+    Valorant Overview
   </h3>
   <p align="center">
     <a href="https://github.com/viniciusgugelmin/data-science-4/blob/master/README.md"><strong>Explore the docs »</strong></a>
@@ -37,14 +37,14 @@ TODO description
 
 **(Portuguese)**
 
-- **Nome original do projeto**: TODO name
-- **Disponível em**: TODO link
-- **Baixado em**: dd/mm/yyyy HH:MM
+- **Nome original do projeto**: Valorant Overview
+- **Disponível em**: https://www.kaggle.com/datasets/ediashtarevin/vct-champions-2023-stats
+- **Baixado em**: 24/09/2023 15:00
 - **Imagem**:
-  TODO image
+  <img src="../../assets/valorant_overview_src.png" alt="print-link" width="100%">
 
 **(English)**
 
-- **Original project name**: TODO name
-- **Available at**: TODO link
-- **Downloaded at**: mm/dd/yyyy HH:MM
+- **Original project name**: Valorant Overview
+- **Available at**: https://www.kaggle.com/datasets/ediashtarevin/vct-champions-2023-stats
+- **Downloaded at**: 09/24/2023 15:00
