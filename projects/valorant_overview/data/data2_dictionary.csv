@@ -1,0 +1,4 @@
+atributo,descricao
+jogador,nome do jogador dentro do jogo (nickname)
+nome_jogador,nome real do jogador
+total,quantidade em dólares que o jogador recebeu de premiações no ano de 2023 (exclui-se salários e patrocínios)

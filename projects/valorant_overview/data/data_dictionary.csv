@@ -1,0 +1,22 @@
+atributo,descricao
+id_partida,número de identificação da partida (MD3 = melhor de 3 jogos; MD5 = melhor de 5 jogos)
+id_jogo,número de identificação do jogo da partida
+time,nome do time do jogador
+pontos_time,pontuação do time do jogador
+oponente,nome do time adversário
+pontos_oponente,pontuação do time adversário
+ganhou_perdeu,resultado do jogo (ganhou ou perdeu)
+mapa,mapa do jogo
+escolha_mapa,escolha do mapa (escolheu ou não escolheu)
+jogador,nome do jogador dentro do jogo (nickname)
+agente,agente/personagem utilizado pelo jogador
+kda,pontução com base em kills/deaths/assists
+pontuacao,pontuação do jogador
+abates,quantidade de jogadores abatidos
+mortes,quantidade de vezes que o jogador foi abatido
+assistencias,quantidade de vezes que o jogador participou de um abate sem abater de fato
+kast_percentual,porcentagem de participação no jogo (abates/assistências/sobrevivência de rodadas/trocas de tiro)
+media_dano,quantidade de dano causado por rodada
+hs_percentual,porcentagem de tiros na cabeça
+primeiro_abate,quantidade de vezes que o jogador foi o primeiro a abater
+primeira_morte,quantidade de vezes que o jogador foi o primeiro a ser abatido
