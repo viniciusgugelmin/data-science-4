@@ -35,7 +35,7 @@ for response in responses:
         data.append(row_data)
 
 
-csv_file = '../data/dataset3.csv'
+csv_file = '../data/dataset2.csv'
 
 
 with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
