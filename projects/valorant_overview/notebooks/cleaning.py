@@ -9,20 +9,24 @@ data_path = dir_path + '\\..\\data'
 # Carregamento dos datasets
 
 ## 1 - Dados de resultados obtidos de todas as partidas de todos os torneios de valorant de 2023
+
 df_url = data_path + '\\dataset.csv'
 df = pd.read_csv(df_url, sep=',', encoding='utf-8')
 
 ## 2 - Dados obtidos através de scrapping, mostrando o montante adquirido por cada jogador de Valorant em 2023
+
 df2_url = data_path + '\\dataset2.csv'
 df2 = pd.read_csv(df2_url, sep=',', encoding='utf-8')
 
 # Limpeza do dataset 1
 
 ## Remoção de colunas desnecessárias
+
 columns_to_drop = ['Unnamed: 0', 'player_id']
 df.drop(columns_to_drop, axis=1, inplace=True)
 
 ## Renomeação de colunas
+
 columns_to_rename = {
     'match_id': 'id_partida',
     'game_id': 'id_jogo',
@@ -49,6 +53,7 @@ columns_to_rename = {
 df.rename(columns_to_rename, axis=1, inplace=True)
 
 ## Mudança de valores para facilitar a análise
+
 df['ganhou_perdeu'] = df['ganhou_perdeu'].replace('opponent win', False)
 df['ganhou_perdeu'] = df['ganhou_perdeu'].replace('team win', True)
 
@@ -84,4 +89,26 @@ df.to_csv(data_path + '\\dataset_clean.csv', sep=',', encoding='utf-8', index=Fa
 
 # Limpeza do dataset 2
 
-## TODO
+## Remoção de colunas desnecessárias
+
+columns_to_drop = ['ID', 'Total (Game)', '% of Game', 'Total (Overall)', '% of Overall']
+df2.drop(columns_to_drop, axis=1, inplace=True)
+
+## Renomeação de colunas
+
+columns_to_rename = {
+    'Nick': 'jogador',
+    'Name': 'nome_jogador',
+    'Total (year)': 'total'
+}
+df2.rename(columns_to_rename, axis=1, inplace=True)
+
+## Mudança de valores para facilitar a análise
+
+df2['total'] = df2['total'].str.replace('$', '')
+df2['total'] = df2['total'].str.replace(',', '')
+df2['total'] = df2['total'].astype(float)
+
+## Geração de csv limpo
+
+df2.to_csv(data_path + '\\dataset2_clean.csv', sep=',', encoding='utf-8', index=False)
