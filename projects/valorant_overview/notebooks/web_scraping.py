@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import os
 
 urls = [
     'https://www.esportsearnings.com/history/2023/games/646-valorant',
@@ -34,9 +35,8 @@ for response in responses:
 
         data.append(row_data)
 
-
-csv_file = '../data/dataset2.csv'
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
+csv_file = dir_path + '\\..\\data\\dataset2.csv'
 
 with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
