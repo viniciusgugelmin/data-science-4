@@ -85,7 +85,13 @@ def wait_for_type():
 
 def menu_control(before_options, options, break_option, break_message):
     while True:
-        before_options()
+        aux_result = before_options()
+
+        if aux_result is True:
+            continue
+
+        if aux_result is False:
+            break
 
         print('\nEscolha uma opção:')
 
@@ -109,11 +115,18 @@ def menu_control(before_options, options, break_option, break_message):
         result = None
 
         try:
-            result = options[option][1]()
+            result = options[option][1](aux_result) if aux_result is not None else options[option][1]()
         except KeyboardInterrupt:
             pass
 
-        if not result or result['dont_send_break_message'] is False:
+        if result and isinstance(result, str):
+            if len(options[option]) == 3:
+                options[option][2](aux_result) if aux_result is not None else options[option][2]()
+
+            print(result)
+
+        if not result or isinstance(result, str) or isinstance(result, dict) and result[
+            'dont_send_break_message'] is False:
             try:
                 input(break_message)
             except KeyboardInterrupt:

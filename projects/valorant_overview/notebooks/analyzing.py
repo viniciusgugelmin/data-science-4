@@ -188,6 +188,51 @@ def team_names():
     print(teams)
 
 
+def team_more_maps_played(team):
+    df_aux = df.copy()
+
+    _team = df_aux[df_aux['time'] == team]['mapa'].value_counts().index[0]
+    number = df_aux[df_aux['time'] == team]['mapa'].value_counts().values[0]
+    max_number = df_aux[df_aux['time'] == team].shape[0]
+
+    return f'{_team} ({number}/{max_number})'
+
+
+def team_stats():
+    df_aux = df.copy()
+
+    def before_options():
+        cprint('\n- Estatísticas de um time em 2023 -\n', 'cyan')
+        cprint('Escolha um time (ou pressione apenas ENTER para voltar): ', 'blue', end='')
+        team = input()
+
+        if team == '':
+            return False
+
+        if team not in df_aux['time'].unique():
+            cprint('\nTime não encontrado!\n', 'red')
+            input('Digite qualquer outra coisa para tentar novamente')
+            os.system('cls')
+            return True
+
+        return team
+
+    def more_maps_played_print(team):
+        cprint('\n- Estatísticas de um time em 2023 -\n', 'cyan')
+        cprint(f'Mapa mais jogado pelo(a) {team} em 2023: ', 'blue', end='')
+
+    options = {
+        1: [
+            'Mapa mais jogado',
+            team_more_maps_played,
+            more_maps_played_print,
+        ]
+    }
+
+    menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar',
+                 break_message='\nDigite qualquer tecla para voltar...')
+
+
 def team_analysis():
     def before_options():
         cprint('\n-- Análise de times --', 'cyan')
@@ -196,6 +241,10 @@ def team_analysis():
         1: [
             'Nome de todos os times',
             team_names
+        ],
+        2: [
+            'Estatísticas de um time',
+            team_stats
         ]
     }
 
@@ -207,7 +256,7 @@ def team_analysis():
     }
 
 
-def dinamyc_analysis():
+def dynamic_analysis():
     def before_options():
         cprint('\n---- Análise dinâmica ----', 'cyan')
 
@@ -243,7 +292,7 @@ def main():
         ],
         3: [
             'Análise dinâmica',
-            dinamyc_analysis
+            dynamic_analysis
         ]
     }
 
