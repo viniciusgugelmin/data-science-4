@@ -1,3 +1,6 @@
+import os
+
+
 def cprint(text, color, **kwargs):
     color_number = None
 
@@ -78,3 +81,42 @@ def show_game_context():
 
 def wait_for_type():
     input('')
+
+
+def menu_control(before_options, options, break_option, break_message):
+    while True:
+        before_options()
+
+        print('\nEscolha uma opção:')
+
+        for key, value in options.items():
+            print(f'{key} - {value[0]}')
+
+        print(break_option)
+
+        try:
+            option = int(input('Opção: '))
+        except KeyboardInterrupt:
+            break
+        except ValueError:
+            break
+
+        if option not in options:
+            break
+
+        os.system('cls')
+
+        result = None
+
+        try:
+            result = options[option][1]()
+        except KeyboardInterrupt:
+            pass
+
+        if not result or result['dont_send_break_message'] is False:
+            try:
+                input(break_message)
+            except KeyboardInterrupt:
+                break
+
+        os.system('cls')

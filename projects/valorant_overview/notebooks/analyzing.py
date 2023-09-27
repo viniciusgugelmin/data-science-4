@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from utils import cprint, show_title, show_game_context, wait_for_type
+from utils import cprint, show_title, show_game_context, wait_for_type, menu_control
 
 # Configuração de variáveis para carregamento de paths
 
@@ -21,8 +21,6 @@ df2 = pd.read_csv(df2_url, sep=',', encoding='utf-8')
 
 
 def show_initial_analysis():
-    # Análise inicial dos dados
-
     cprint('\n---- Análise inicial dos dados ----', 'cyan')
 
     df_aux = df.copy()
@@ -180,53 +178,77 @@ def show_initial_analysis():
           jogador_menor_hs_time, sep=' - ')
 
 
-def main():
+def team_names():
+    df_aux = df.copy()
+
+    cprint('\n- Nomes de todos os times que jogaram em 2023 -\n', 'cyan')
+
+    teams = df_aux['time'].sort_values().unique()
+    teams = ', '.join(teams)
+    print(teams)
+
+
+def team_analysis():
+    def before_options():
+        cprint('\n-- Análise de times --', 'cyan')
+
     options = {
         1: [
-            'Mostrar a contextualização',
-            show_game_context
-        ],
-        2: [
-            'Mostrar a análise inicial',
-            show_initial_analysis
-        ],
+            'Nome de todos os times',
+            team_names
+        ]
     }
 
-    while True:
+    menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar',
+                 break_message='\nDigite qualquer tecla para voltar...')
+
+    return {
+        'dont_send_break_message': True
+    }
+
+
+def dinamyc_analysis():
+    def before_options():
+        cprint('\n---- Análise dinâmica ----', 'cyan')
+
+    options = {
+        1: [
+            'Análise de times',
+            team_analysis
+        ]
+    }
+
+    menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar ao menu',
+                 break_message='\nDigite qualquer tecla para voltar...')
+
+    return {
+        'dont_send_break_message': True
+    }
+
+
+def main():
+    def before_options():
         show_title()
 
         cprint('\n-- Menu --', 'cyan')
 
-        print('\nEscolha uma opção:')
+    options = {
+        1: [
+            'Contextualização',
+            show_game_context
+        ],
+        2: [
+            'Análise inicial',
+            show_initial_analysis
+        ],
+        3: [
+            'Análise dinâmica',
+            dinamyc_analysis
+        ]
+    }
 
-        for key, value in options.items():
-            print(f'{key} - {value[0]}')
-
-        print('Digite qualquer outra coisa para sair')
-
-        try:
-            option = int(input('Opção: '))
-        except KeyboardInterrupt:
-            break
-        except ValueError:
-            break
-
-        if option not in options:
-            break
-
-        os.system('cls')
-
-        try:
-            options[option][1]()
-        except KeyboardInterrupt:
-            pass
-
-        try:
-            input('\nPressione qualquer tecla para voltar ao menu...')
-        except KeyboardInterrupt:
-            break
-
-        os.system('cls')
+    menu_control(before_options, options, break_option='Digite qualquer outra coisa para sair',
+                 break_message='\nDigite qualquer tecla para voltar ao menu...')
 
 
 if __name__ == '__main__':
