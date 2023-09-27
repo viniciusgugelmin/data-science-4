@@ -1,3 +1,5 @@
 venv
 env
 .idea
+__pycache__
+projects/valorant_overview/notebooks/__pycache__

@@ -1,0 +1,80 @@
+def cprint(text, color, **kwargs):
+    color_number = None
+
+    if color == 'blue':
+        color_number = 34
+    elif color == 'green':
+        color_number = 32
+    elif color == 'red':
+        color_number = 31
+    elif color == 'yellow':
+        color_number = 33
+    elif color == 'purple':
+        color_number = 35
+    elif color == 'cyan':
+        color_number = 36
+    else:
+        color_number = 37
+
+    print(f'\033[{color_number}m{text}\033[0m', **kwargs)
+
+
+def show_title():
+    cprint('\n------ Análise de dados do meio competitivo de Valorant de 2023 ------', 'cyan')
+
+
+def show_what_is_the_game():
+    cprint('\nO que é Valorant?', 'blue')
+    print(
+        'Valorant é um jogo de tiro em primeira pessoa desenvolvido pela Riot Games, mesma desenvolvedora de League of '
+        'Legends, e foi lançado em 2020. O jogo é gratuito e possui competitivo ranqueado, além de campeonatos '
+        'profissionais.')
+
+
+def show_what_is_an_agent():
+    cprint('\nO que é um agente?', 'blue')
+    print(
+        'Um agente é um personagem com habilidades especiais que podem ser utilizadas durante a partida. Cada agente '
+        'possui habilidades únicas e classes diferentes que diferenciam o estilo de jogo de cada um.')
+
+
+def show_how_many_agents_are_there():
+    cprint('\nQuantos agentes existem?', 'blue')
+    print('Existem 22 no total, sendo 2 deles lançados em 2023.')
+
+
+def show_agent_roles():
+    cprint('\nQuais são as classes de agentes?', 'blue')
+    print(
+        'Existem 4 classes de agentes: Duelista, Controlador, Sentinela e Iniciador. Duelistas são agentes que possuem '
+        'habilidades que facilitam a troca de tiros e o abate de inimigos. Controladores são agentes que possuem '
+        'habilidades que facilitam o controle de território e a visão de inimigos. Sentinela são agentes que possuem '
+        'habilidades que facilitam a defesa de território e a proteção de aliados. Iniciadores são agentes que possuem '
+        'habilidades que facilitam a obtenção de informações sobre a posição dos inimigos.')
+
+
+def show_team_player_numbers():
+    cprint('\nQuantos jogadores cada time possui?', 'blue')
+    print('Cada time possui 6 jogadores, sendo 5 titulares e 1 reserva.')
+
+
+def show_world_champion():
+    cprint('\nQual é a atual equipe campeã mundial de Valorant?', 'blue')
+    print(
+        'A atual equipe campeã mundial de Valorant é a Evil Geniuses (EG), que venceu o Valorant Champions Los Angeles '
+        '2023.')
+
+
+def show_game_context():
+    cprint('\n---- Contextualização ----', 'cyan')
+
+    show_what_is_the_game()
+    show_what_is_an_agent()
+    show_how_many_agents_are_there()
+    show_agent_roles()
+    show_team_player_numbers()
+    show_world_champion()
+
+
+def wait_for_type():
+    input('')
