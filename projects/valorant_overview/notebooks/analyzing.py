@@ -270,12 +270,14 @@ def map_win_loss(team):
 
     team_matches = df_aux[df_aux['time'] == team]
 
-    win_grouped = team_matches[team_matches['ganhou_perdeu'] == True].groupby(['id_jogo', 'mapa']).size().reset_index(name='count')
+    win_grouped = team_matches[team_matches['ganhou_perdeu'] == True].groupby(['id_jogo', 'mapa']).size().reset_index(
+        name='count')
     win_grouped['count'] = 1
     win_grouped = win_grouped.groupby('mapa').sum().reset_index()
     win_grouped.columns = ['mapa', 'id_jogo', 'vitorias']
 
-    loss_grouped = team_matches[team_matches['ganhou_perdeu'] == False].groupby(['id_jogo', 'mapa']).size().reset_index(name='count')
+    loss_grouped = team_matches[team_matches['ganhou_perdeu'] == False].groupby(['id_jogo', 'mapa']).size().reset_index(
+        name='count')
     loss_grouped['count'] = 1
     loss_grouped = loss_grouped.groupby('mapa').sum().reset_index()
     loss_grouped.columns = ['mapa', 'id_jogo', 'derrotas']
@@ -298,7 +300,6 @@ def map_win_loss(team):
     ax.legend(title='Resultado')
 
     plt.show()
-
 
 
 def team_stats():
@@ -372,11 +373,56 @@ def team_analysis():
     }
 
 
+def player_names():
+    df_aux = df.copy()
+
+    cprint('\n- Nomes de todos os jogadores que jogaram em 2023 -\n', 'cyan')
+
+    players = df_aux['jogador'].sort_values().unique()
+    players = ', '.join(players)
+    print(players)
+
+
+def player_stats():
+    df_aux = df.copy()
+
+    def before_options():
+        cprint('\n- Estatísticas de um jogador em 2023 -\n', 'cyan')
+        cprint('Escolha um jogador (ou pressione apenas ENTER para voltar): ', 'blue', end='')
+        player = input()
+
+        if player == '':
+            return False
+
+        if player not in df_aux['jogador'].unique():
+            cprint('\nJogador não encontrado!\n', 'red')
+            input('Digite qualquer outra coisa para tentar novamente')
+            os.system('cls')
+            return True
+
+        return player
+
+    options = {
+
+    }
+
+    menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar',
+                 break_message='\nDigite qualquer tecla para voltar...')
+
+
 def player_analysis():
     def before_options():
         cprint('\n-- Análise de jogadores --', 'cyan')
 
     options = {
+        1: [
+            'Nome de todos os jogadores',
+            player_names
+        ],
+        2: [
+            'Estatísticas de um jogador',
+            player_stats
+        ]
     }
 
     menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar',
