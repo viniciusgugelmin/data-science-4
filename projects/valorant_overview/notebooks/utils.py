@@ -83,6 +83,16 @@ def wait_for_type():
     input('')
 
 
+def menu_control_waiter(options, waiter=False):
+    for option in options:
+        option()
+
+        if waiter:
+            wait_for_type()
+        else:
+            print()
+
+
 def menu_control(before_options, options, break_option, break_message):
     while True:
         aux_result = before_options()
