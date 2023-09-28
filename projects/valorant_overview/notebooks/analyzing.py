@@ -383,6 +383,41 @@ def player_names():
     print(players)
 
 
+def player_kills_by_map(player):
+    df_aux = df.copy()
+    cprint('\n- Estatísticas de um jogador em 2023 -\n', 'cyan')
+
+    cprint(f'Número de kills por mapa para o(a) {player} em 2023:\n', 'blue')
+
+    player_matches = df_aux[df_aux['jogador'] == player]
+
+    player_kills = player_matches.groupby(['mapa'])['abates'].sum().reset_index()
+    player_kills = player_kills.sort_values(by='abates', ascending=False)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    x = range(len(player_kills))
+    width = 0.35
+
+    bars = ax.bar(x, player_kills['abates'], width, label='Abates', align='center', color='red')
+
+    ax.set_title(f'Abates por Mapa para o {player}')
+    ax.set_xlabel('Mapa')
+    ax.set_ylabel('Número de Abates')
+    ax.set_xticks(x)
+    ax.set_xticklabels(player_kills['mapa'], rotation=45)
+    ax.legend(title='Estatísticas')
+
+    for bar in bars:
+        height = bar.get_height()
+        ax.annotate(f'{int(height)}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                    xytext=(0, 3),
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+
+    plt.show()
+
+
 def player_stats():
     df_aux = df.copy()
 
@@ -403,7 +438,10 @@ def player_stats():
         return player
 
     options = {
-
+        1: [
+            'Abates por mapa (GRÁFICO)',
+            player_kills_by_map
+        ]
     }
 
     menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar',
