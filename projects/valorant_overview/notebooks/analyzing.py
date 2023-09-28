@@ -327,6 +327,21 @@ def team_analysis():
     }
 
 
+def player_analysis():
+    def before_options():
+        cprint('\n-- Análise de jogadores --', 'cyan')
+
+    options = {
+    }
+
+    menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar',
+                 break_message='\nDigite qualquer tecla para voltar...')
+
+    return {
+        'dont_send_break_message': True
+    }
+
+
 def dynamic_analysis():
     def before_options():
         cprint('\n---- Análise dinâmica ----', 'cyan')
@@ -335,6 +350,10 @@ def dynamic_analysis():
         1: [
             'Análise de times',
             team_analysis
+        ],
+        2: [
+            'Análise de jogadores',
+            player_analysis
         ]
     }
 
