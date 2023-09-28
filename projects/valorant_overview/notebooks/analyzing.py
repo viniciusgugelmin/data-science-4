@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import os
 from utils import cprint, show_title, show_game_context, menu_control, menu_control_waiter
 
@@ -260,6 +261,46 @@ def team_more_map_win_percent(team):
     return string_to_return
 
 
+def map_win_loss(team):
+    df_aux = df.copy()
+
+    cprint('\n- Estatísticas de um time em 2023 -\n', 'cyan')
+
+    cprint(f'Vitórias e derrotas do(a) {team} em 2023 por mapa:\n', 'blue')
+
+    team_matches = df_aux[df_aux['time'] == team]
+
+    win_grouped = team_matches[team_matches['ganhou_perdeu'] == True].groupby(['id_jogo', 'mapa']).size().reset_index(name='count')
+    win_grouped['count'] = 1
+    win_grouped = win_grouped.groupby('mapa').sum().reset_index()
+    win_grouped.columns = ['mapa', 'id_jogo', 'vitorias']
+
+    loss_grouped = team_matches[team_matches['ganhou_perdeu'] == False].groupby(['id_jogo', 'mapa']).size().reset_index(name='count')
+    loss_grouped['count'] = 1
+    loss_grouped = loss_grouped.groupby('mapa').sum().reset_index()
+    loss_grouped.columns = ['mapa', 'id_jogo', 'derrotas']
+
+    map_stats = pd.merge(win_grouped, loss_grouped, on='mapa', how='outer').fillna(0)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    x = range(len(map_stats))
+    width = 0.35
+
+    ax.bar(x, map_stats['vitorias'], width, label='Vitórias', align='center', color='green')
+    ax.bar(x, map_stats['derrotas'], width, bottom=map_stats['vitorias'], label='Derrotas', align='center', color='red')
+
+    ax.set_title(f'Vitórias e Derrotas por Mapa para o(a) {team}')
+    ax.set_xlabel('Mapa')
+    ax.set_ylabel('Número de Jogos')
+    ax.set_xticks(x)
+    ax.set_xticklabels(map_stats['mapa'], rotation=45)
+    ax.legend(title='Resultado')
+
+    plt.show()
+
+
+
 def team_stats():
     df_aux = df.copy()
 
@@ -298,6 +339,10 @@ def team_stats():
             team_more_map_win_percent,
             more_maps_win_percent_print,
         ],
+        3: [
+            'Vitórias e derrotas por mapa (GRÁFICO)',
+            map_win_loss
+        ]
     }
 
     menu_control(before_options, options, break_option='Digite qualquer outra coisa para voltar',
