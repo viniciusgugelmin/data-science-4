@@ -52,11 +52,11 @@
 
 **(Portuguese)**
 
-Trabalho desenvolvido para a disciplina de Tópicos Especiais em Software, ministrada pelo professor **Alexandre Peres Arias** no curso de **Bacharelado de Sistemas de Informação** da **Universidade Positivo**. O trabalho consiste **TODO**
+Trabalho desenvolvido para a disciplina de Tópicos Especiais em Software, ministrada pelo professor **Alexandre Peres Arias** no curso de **Bacharelado de Sistemas de Informação** da **Universidade Positivo**. O trabalho consiste na limpeza de dados de um dataset de e na análise dos dados limpos de forma dinâmica
 
 **(English)**
 
-Work developed for the discipline of Special Topics in Software, taught by professor **Alexandre Peres Arias** in the course of **Bachelor of Information Systems** at **Universidade Positivo**. The work consists **TODO**
+Work developed for the discipline of Special Topics in Software, taught by professor **Alexandre Peres Arias** in the course of **Bachelor of Information Systems** at **Universidade Positivo**. The work consists of cleaning data from a dataset and analyzing the clean data in a dynamic way.
 
 <br>
 
@@ -87,7 +87,9 @@ Click here to see the commit/branch name standard
 ## 📧 Contact
 
 Aramis Chang Chain
+
 Luiz Felipe Antunes Oliveira
+
 Vinícius Kruchelski Gugelmin - vinigugelmin@gmail.com
 
 

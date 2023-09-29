@@ -25,11 +25,11 @@
 
 **(Portuguese)**
 
-TODO description
+O projeto consiste na limpeza de dados de um dataset de resultados individuais de cada partida de cada jogador de Valorant de 2023, web scraping de dados de uma tabela contendo o montante ganho por cada jogador em torneios de 2023. Feita a limpeza desses dados, é feita uma análise dos dados limpos de forma dinâmica, com gráficos e tabelas.
 
 **(English)**
 
-TODO description
+The project consists of cleaning data from a dataset of individual results of each match of each Valorant player from 2023, web scraping data from a table containing the amount earned by each player in tournaments from 2023. After cleaning this data, an analysis of the clean data is done dynamically, with graphs and tables.
 
 <a name="source"></a>
 

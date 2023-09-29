@@ -521,4 +521,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # print(df.groupby(['time', 'id_jogo']).sum().reset_index().groupby('time').size().sort_values(ascending=False))
